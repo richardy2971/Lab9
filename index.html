@@ -53,7 +53,15 @@
     <button>End Timer</button>
     <button>Console Trace</button>
     <button>Trigger a Global Error</button>
+    <button>Try Catch Fail</button>
   </section>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({
+    token: "ae97a1b21ea34569afc61bb94baaaaa4"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
 
   <script>
     let calculateBtn = document.querySelector('#calculate');
@@ -67,6 +75,79 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+
+    errorBtns[0].addEventListener('click',()=> {
+      console.log("Console Log");
+    });
+
+     errorBtns[1].addEventListener('click', () => {
+      console.error("Console Error");
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.dir(errorBtns[2]);
+    });
+
+    errorBtns[3].addEventListener('click', ()=> {
+      console.dirxml(errorBtns[3]);
+    });
+
+      errorBtns[4].addEventListener('click', () => {
+          console.group();
+        });
+
+        //Console GroupEnd Demo
+        errorBtns[5].addEventListener('click', () => {
+          console.groupEnd();
+        });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.table(["Software Engineering", "Programming Languages", "Advanced Software Engineering"]);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.time();
+      console.log('Timer Started!');
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.timeEnd();
+      console.log('Timer Ended!');
+    });
+
+    errorBtns[9].addEventListener('click', () =>{
+      const first = () => { second(); };
+      const second = () => { third(); };
+      const third = () => { fourth(); };
+      const fourth = () => { console.trace(); };
+      first();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.log(boom);
+    });
+
+    class GetError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "GetError";
+      }
+    }
+    function throwError() {
+      throw new GetError("Error Gotten");
+    }
+    errorBtns[11].addEventListener('click', () => {
+      try {
+        fail();
+      }
+      catch (err){
+        throwError();
+      }
+    });
+    window.onerror = () => {
+      console.log("Error");
+      TrackJS.track('TrackJS needs');
+        };
   </script>
 </body>
 </html>
