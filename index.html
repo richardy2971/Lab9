@@ -62,7 +62,6 @@
     // for more configuration options, see https://docs.trackjs.com
   });
 </script>
-
   <script>
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
@@ -92,14 +91,13 @@
       console.dirxml(errorBtns[3]);
     });
 
-      errorBtns[4].addEventListener('click', () => {
-          console.group();
-        });
+    errorBtns[4].addEventListener('click', () => {
+      onsole.group();
+    });
 
-        //Console GroupEnd Demo
-        errorBtns[5].addEventListener('click', () => {
-          console.groupEnd();
-        });
+    errorBtns[5].addEventListener('click', () => {
+      console.groupEnd();
+    });
 
     errorBtns[6].addEventListener('click', () => {
       console.table(["Software Engineering", "Programming Languages", "Advanced Software Engineering"]);
@@ -144,10 +142,10 @@
         throwError();
       }
     });
-    window.onerror = () => {
+    window.onerror = function () {
       console.log("Error");
-      TrackJS.track('TrackJS needs');
-        };
+      TrackJS.track('Testing TrackJS!');
+    };
   </script>
 </body>
 </html>
